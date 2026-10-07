@@ -1,0 +1,22 @@
+# Launch an interactive shell in the isolated build env:
+#
+#   docker compose run --rm dev
+#
+# The project is mounted at /work, so edits on the host are visible inside
+# and build artifacts land back in the tree. Networking is disabled to keep
+# the environment isolated.
+services:
+  dev:
+    build: .
+    image: elfstate-dev
+    working_dir: /work
+    # Run as the host user so build artifacts aren't owned by root.
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      HOME: /home/dev
+    volumes:
+      - .:/work
+    network_mode: none
+    stdin_open: true
+    tty: true
+    command: /bin/zsh

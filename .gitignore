@@ -1,0 +1,22 @@
+# build outputs
+build/
+compile_commands.json
+
+# built binaries (root project)
+/test
+/selfcrypt
+/elfpack
+
+# built binaries (v2)
+/v2/inject
+
+# runtime scratch
+showcase/
+*.enc
+*.o
+vgcore.*
+*.es-*
+*.pk*
+
+# local caches
+.cache/
